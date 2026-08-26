@@ -1,0 +1,21 @@
+# Sensible Konfigurationsdaten (API-Keys, Passwörter)
+.env
+
+# Lokale Datenbank (SQLite)
+*.db
+*.db-journal
+
+# Virtuelle Python-Umgebung
+.venv/
+venv/
+ENV/
+
+# Python-Cache und temporäre Dateien
+__pycache__/
+*.py[cod]
+*$py.class
+_err.txt
+
+# IDE-spezifische Ordner
+.idea/
+.vscode/
