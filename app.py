@@ -60,7 +60,7 @@ ADMIN_PASSWORD = os.getenv("AEO_ADMIN_PASSWORD", "AeoSpaceport2026Secure")
 
 # Dashboard-Zugriffskontrollen
 ENABLE_DASHBOARD = os.getenv("AEO_ENABLE_DASHBOARD", "true").lower() == "true"
-DASHBOARD_LOCAL_ONLY = os.getenv("AEO_DASHBOARD_LOCAL_ONLY", "false").lower() == "true"
+DASHBOARD_LOCAL_ONLY = os.getenv("AEO_DASHBOARD_LOCAL_ONLY", "true").lower() == "true"
 
 def get_current_admin(credentials: HTTPBasicCredentials = Depends(security)):
     """
