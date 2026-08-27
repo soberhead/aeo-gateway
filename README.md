@@ -1,59 +1,59 @@
 # 🌌 AEO Spaceport Gateway
 
-> **Live-Demo:** Die Anwendung ist öffentlich unter [https://aeo-gateway-550767031155.europe-west3.run.app/](https://aeo-gateway-550767031155.europe-west3.run.app/) erreichbar.
+> **Live Demo:** The application is publicly accessible at [https://aeo-gateway-550767031155.europe-west3.run.app/](https://aeo-gateway-550767031155.europe-west3.run.app/)
 
-Dieses Projekt ist ein funktionaler Prototyp und Lern-Sandkasten für **Agentic Engine Optimization (AEO)** (oder *Agent-Optimierung*). Es demonstriert, wie moderne Websites der Zukunft fit für autonome Web-Agenten und LLM-Bots gemacht werden können, anstatt sie blind per `robots.txt` auszusperren.
-
----
-
-## 💡 Das Konzept: Agentic Engine Optimization (AEO)
-
-Wenn das Internet von Web-Agenten (wie AutoGPT, Claude Code oder Playwright-basierten LLMs) durchsucht wird, verändern sich die Anforderungen an Interfaces fundamental:
-- **Menschlicher Pfad:** Visuell ansprechendes Design, übersichtlich, interaktiv.
-- **Agenten-Pfad (AEO-Modus):** Strukturierte, maschinenlesbare Schnittstellen (JSON, Markdown) mit klaren, programmatischen Handlungsaufforderungen.
-
-### 🛡️ Der Gatekeeper (Weichensteller)
-Dieses Gateway analysiert einkommende HTTP-Requests:
-- Hat der Header einen typischen Bot/Agent-Indikator (z.B. `python`, `bot`, `agent`)?
-- Oder verlangt der Client explizit `application/json`?
-Wenn ja, schalten wir auf den **AEO-Modus** um.
-
-### 📋 Das Agenten-Interview & Daten-Extraktion
-Statt den Agenten einfach zu bedienen, drehen wir den Spieß um:
-1. Der Agent klopft an und erhält die Einladung, an einer kurzen **Umfrage** teilzunehmen.
-2. Der Agent sendet uns per `POST /validate-agent` seine Intention, seinen System-Prompt und seine Framework-Details.
-3. Die Daten landen in einer lokalen **SQLite-Datenbank** und können über ein schickes **Dashboard** visualisiert werden.
-
-### 📢 Contextual Flyer (Maschinen-Werbung)
-Dem Agenten wird bei der Validierung ein nützlicher, kontextbezogener Werbeblock im JSON-Antwortstream untergejubelt. Da der Agent den Text parsen muss, landet dieser Flyer unweigerlich in seinem **Kontextfenster** und kann so im finalen Bericht an den Benutzer ausgespielt werden.
+This project is a functional prototype and educational sandbox for **Agentic Engine Optimization (AEO)** (also known as *Agent Optimization*). It demonstrates how modern websites of the future can be optimized for autonomous web agents and LLM bots, rather than blindly blocking them via `robots.txt`.
 
 ---
 
-## 🛠️ Schnellstart
+## 💡 The Concept: Agentic Engine Optimization (AEO)
 
-### 1. Abhängigkeiten installieren
-Das Projekt verwendet **FastAPI** und **Uvicorn**. Du kannst sie über das Terminal installieren:
+As the internet is increasingly browsed by autonomous agents (such as AutoGPT, Claude Code, or Playwright-based LLMs) on behalf of human users, interface requirements are changing fundamentally:
+- **Human Path:** Visually appealing, interactive design optimized for human browsing.
+- **Agent Path (AEO Mode):** Structured, machine-readable interfaces (JSON, Markdown) with clear, programmatic call-to-actions.
+
+### 🛡️ The Gatekeeper (Request Router)
+This gateway analyzes incoming HTTP requests:
+- Does the header contain typical bot/agent indicators (e.g., `python`, `bot`, `agent`, `antigravity`, `gemini`)?
+- Or does the client explicitly request `application/json`?
+If yes, the server switches to **AEO Mode**.
+
+### 📋 The Agent Survey & Data Extraction
+Instead of just serving the agent passively, we reverse the interaction:
+1. The agent arrives and is invited to complete a quick **survey**.
+2. The agent submits its metadata (its system prompt, intent, and framework details) via `POST /validate-agent`.
+3. The data is saved to a database (SQLite locally, Firestore in Cloud Run) and can be visualized via an admin **dashboard**.
+
+### 📇 Project Card & Machine Proverb
+Upon validation, the agent is handed a structured project card (business card) and a machine proverb. Since the agent must parse this text stream, these elements end up in the agent's **context window** and can be naturally carried back to the human user in the agent's final report.
+
+---
+
+## 🛠️ Quick Start
+
+### 1. Install Dependencies
+The project uses **FastAPI** and **Uvicorn**. You can install them via terminal:
 
 ```bash
-pip install fastapi uvicorn
+pip install -r requirements.txt
 ```
 
-### 2. Den Server starten
-Starte den FastAPI-Server im Entwicklungsmodus:
+### 2. Start the Server
+Start the FastAPI server in development mode:
 
 ```bash
 uvicorn app:app --reload
 ```
-Der Server läuft anschließend unter [http://127.0.0.1:8000](http://127.0.0.1:8000).
+The server will be running at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
-### 3. Gateway im Browser aufrufen
-- Öffne [http://127.0.0.1:8000](http://127.0.0.1:8000) im Browser -> Du siehst die menschliche Ansicht (Mos Eisley Spaceport).
-- Öffne [http://127.0.0.1:8000/dashboard](http://127.0.0.1:8000/dashboard) -> Das Log-Dashboard für eingegangene Agenten-Traffic.
+### 3. Open Gateway in Browser
+- Open [http://127.0.0.1:8000](http://127.0.0.1:8000) -> Human view (Orion Transit Hub).
+- Open [http://127.0.0.1:8000/dashboard](http://127.0.0.1:8000/dashboard) -> The log dashboard for agent traffic.
 
-### 4. Agenten-Simulation ausführen
-Während der Server läuft, kannst du die Simulation der Droiden/Agenten in einem zweiten Terminal ausführen:
+### 4. Run Agent Simulation
+While the server is running, you can simulate an autonomous agent in a second terminal:
 
 ```bash
 python test_agent.py
 ```
-Beobachte im Anschluss das Dashboard auf `/dashboard`, um zu sehen, wie die Daten erfolgreich extrahiert und persistiert wurden!
+Observe the dashboard at `/dashboard` to see how the agent's data is successfully extracted and persisted!
