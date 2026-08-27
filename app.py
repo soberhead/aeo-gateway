@@ -357,27 +357,67 @@ async def gateway_root(request: Request):
         <style>
             body {{
                 font-family: 'Courier New', Courier, monospace;
-                background-color: #0c0f12;
+                background-color: #06090c;
                 color: #2bef86;
                 padding: 40px;
                 line-height: 1.6;
+                text-shadow: 0 0 5px rgba(43, 239, 134, 0.7), 0 0 10px rgba(43, 239, 134, 0.4);
+                position: relative;
+                overflow-x: hidden;
+                animation: crt-flicker 0.15s infinite;
             }}
+            
+            /* Scanlines Overlay */
+            body::after {{
+                content: " ";
+                display: block;
+                position: fixed;
+                top: 0; left: 0; bottom: 0; right: 0;
+                background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
+                background-size: 100% 4px;
+                z-index: 9999;
+                pointer-events: none;
+            }}
+
+            /* Vignette Shadow */
+            .crt-vignette {{
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: radial-gradient(circle, rgba(0,0,0,0) 55%, rgba(0,0,0,0.85) 100%);
+                z-index: 9998;
+                pointer-events: none;
+            }}
+
+            @keyframes crt-flicker {{
+                0% {{ opacity: 0.985; }}
+                50% {{ opacity: 1; }}
+                100% {{ opacity: 0.99; }}
+            }}
+            
             .container {{
                 max-width: 800px;
                 margin: auto;
-                border: 1px solid #2bef86;
+                border: 2px solid #2bef86;
                 padding: 30px;
-                box-shadow: 0 0 15px rgba(43, 239, 134, 0.2);
+                background-color: #0c0f12;
+                box-shadow: 0 0 25px rgba(43, 239, 134, 0.25);
+                border-radius: 8px;
+                position: relative;
+                z-index: 1;
             }}
             h1 {{
                 border-bottom: 2px solid #2bef86;
                 padding-bottom: 10px;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
             }}
             .terminal-box {{
-                background-color: #050709;
+                background-color: #030507;
+                border: 1px solid rgba(43, 239, 134, 0.4);
                 border-left: 5px solid #2bef86;
                 padding: 15px;
                 margin: 20px 0;
+                box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
             }}
             .btn {{
                 display: inline-block;
@@ -389,16 +429,25 @@ async def gateway_root(request: Request):
                 margin-top: 15px;
                 border: none;
                 cursor: pointer;
+                box-shadow: 0 0 10px rgba(43, 239, 134, 0.4);
             }}
             .btn:hover {{
                 background-color: #1cb561;
+                box-shadow: 0 0 15px rgba(43, 239, 134, 0.6);
             }}
             a {{
                 color: #2bef86;
+                text-decoration: none;
+                border-bottom: 1px dashed #2bef86;
+            }}
+            a:hover {{
+                color: #fff;
+                border-bottom: 1px solid #fff;
             }}
         </style>
     </head>
     <body>
+        <div class="crt-vignette"></div>
         <div class="container">
             <h1>🌌 Orion Transit Hub AEO Gateway</h1>
             <p><strong>Status:</strong> Online and scanning the orbit for autonomous transport drones.</p>
