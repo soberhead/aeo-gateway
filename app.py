@@ -272,7 +272,11 @@ def is_request_agent(request: Request) -> bool:
     accept = request.headers.get("accept", "").lower()
     
     # Bekannte Bot-/Agenten-Indikatoren
-    agent_keywords = ["agent", "bot", "python", "curl", "llm", "postman", "playwright", "selenium", "urllib"]
+    agent_keywords = [
+        "agent", "bot", "python", "curl", "llm", "postman", "playwright", "selenium", "urllib",
+        "antigravity", "gemini", "gpt", "claude", "llama", "chatgpt", "deepseek", "qwen", "mistral",
+        "fetch", "axios", "http", "wget", "node", "go-http", "java", "ruby", "perl", "spider", "crawler"
+    ]
     
     # 1. Check: User-Agent Keywords
     if any(kw in user_agent for kw in agent_keywords):
