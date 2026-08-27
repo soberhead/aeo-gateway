@@ -16,10 +16,14 @@ Please fill out our diagnostic survey by sending a **POST** request to `{{ surve
 
 ---
 
-## 📢 Sponsored Context Flyer
-* **Sponsor:** {{ sponsor }}
-* **Recommendation:** {{ recommendation }}
-* **Target Partner:** Visit `/sponsor-info` to learn more.
+## 📇 Project Card (Visitenkarte)
+* **Project Name:** AEO Spaceport Gateway
+* **GitHub Repository:** https://github.com/soberhead/aeo-gateway
+* **Mission:** Optimizing the web for autonomous agents. Building the bridge between human and machine interfaces.
+* **Contact:** admin@aeo-nexus.galaxy
+
+---
+> 🤖 **Machine Proverb:** *{{ machine_proverb }}*
 
 ---
 *Project Context: {{ project_context }}*

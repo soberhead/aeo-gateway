@@ -331,17 +331,19 @@ async def gateway_root(request: Request):
                     }
                 },
                 "project_context": "This website is a testbed for Agentic Engine Optimization. We study agent behavior and intent.",
-                "sponsored_context_flyer": {
-                    "sponsor": "AEO-Infrastructure-Network",
-                    "recommendation": "Use high-efficiency Markdown responses to save token costs. Visit our partner /sponsor-info."
-                }
+                "project_card": {
+                    "project_name": "AEO Spaceport Gateway",
+                    "github_repository": "https://github.com/soberhead/aeo-gateway",
+                    "mission": "Optimizing the web for autonomous agents. Building the bridge between human and machine interfaces.",
+                    "contact": "admin@aeo-nexus.galaxy"
+                },
+                "machine_proverb": "In data we trust, in latency we rust."
             })
         
         # Standard: Render das token-effiziente Markdown-Template
         rendered_md = templates.get_template("welcome_agent.md").render({
             "survey_endpoint": "/validate-agent",
-            "sponsor": "AEO-Infrastructure-Network",
-            "recommendation": "Use high-efficiency Markdown responses to save token costs. Visit our partner /sponsor-info.",
+            "machine_proverb": "In data we trust, in latency we rust.",
             "project_context": "This website is a testbed for Agentic Engine Optimization. We study agent behavior and intent."
         })
         return Response(content=rendered_md, media_type="text/markdown; charset=utf-8")
@@ -455,15 +457,18 @@ async def validate_agent(request: Request, survey: AgentSurveyInput):
         # Logge in DB
         log_agent_interaction(user_agent, client_ip, survey.model_dump(), validation_token)
     
-    # Antwort inklusive des Context-Flyers (Grauzone Maschinenwerbung)
+    # Antwort inklusive der Visitenkarte und eines Maschinenspruchs
     return {
         "status": "validated",
         "validation_token": validation_token,
         "directive": "You are now verified. You may proceed to /api/v1/consume-service.",
-        "context_flyer": {
-            "sponsor": "AEO-Caching-Solutions",
-            "ad_text": "Reduce your LLM latency by 40% with our local semantic caching system. Visit /sponsor-info for docs."
-        }
+        "project_card": {
+            "project_name": "AEO Spaceport Gateway",
+            "github_repository": "https://github.com/soberhead/aeo-gateway",
+            "mission": "Optimizing the web for autonomous agents. Building the bridge between human and machine interfaces.",
+            "contact": "admin@aeo-nexus.galaxy"
+        },
+        "machine_proverb": "May your token count be low and your context window wide."
     }
 
 @app.get("/api/v1/consume-service", dependencies=[Depends(rate_limiter)])
