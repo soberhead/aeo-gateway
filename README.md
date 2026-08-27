@@ -1,5 +1,7 @@
 # 🌌 AEO Spaceport Gateway
 
+> **Live-Demo:** Die Anwendung ist öffentlich unter [https://aeo-gateway-550767031155.europe-west3.run.app/](https://aeo-gateway-550767031155.europe-west3.run.app/) erreichbar.
+
 Dieses Projekt ist ein funktionaler Prototyp und Lern-Sandkasten für **Agentic Engine Optimization (AEO)** (oder *Agent-Optimierung*). Es demonstriert, wie moderne Websites der Zukunft fit für autonome Web-Agenten und LLM-Bots gemacht werden können, anstatt sie blind per `robots.txt` auszusperren.
 
 ---
